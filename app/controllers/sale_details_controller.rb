@@ -1,4 +1,5 @@
 class SaleDetailsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_sale_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /sale_details

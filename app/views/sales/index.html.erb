@@ -24,8 +24,10 @@
         <td>
           <%= link_to t('.Editar', :default => t("helpers.links.Editar")),
             edit_sale_path(sale), :class => 'btn btn-mini' %>
+        <% if can? :destroy, sale %>
           <%= link_to t('.Eliminar', :default => t("helpers.links.Eliminar")), sale_path(sale),
-            :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-mini btn-danger' %>
+          :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-mini btn-danger' %>
+        <% end %>
         </td>
       </tr>
     <% end %>

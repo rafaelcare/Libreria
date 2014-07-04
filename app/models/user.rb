@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #has_many :orders,:through => :products
   belongs_to :sale
-  ROLES = %w[admin vendedor creador]
+  ROLES = %w[Administrador Vendedor]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
