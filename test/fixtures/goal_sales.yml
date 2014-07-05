@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario_id: 1
+  meta: 1
+  alcanzado: false
+  fechainicio: 2014-07-04 23:58:59
+  fechafin: 2014-07-04 23:58:59
+
+two:
+  usuario_id: 1
+  meta: 1
+  alcanzado: false
+  fechainicio: 2014-07-04 23:58:59
+  fechafin: 2014-07-04 23:58:59

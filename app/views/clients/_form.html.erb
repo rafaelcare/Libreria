@@ -1,5 +1,5 @@
 <%= form_for @client, :html => { :class => 'form-horizontal' } do |f| %>
-
+<%= f.hidden_field :id %>
 
  <div class="control-group<%= @client.errors[:nombre].any? ? " error" : "" %>">
     <%= f.label :nombre, :class => 'control-label' %>

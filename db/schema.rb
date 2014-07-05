@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628221842) do
+ActiveRecord::Schema.define(version: 20140705045859) do
 
   create_table "categories", force: true do |t|
     t.string   "nombre"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20140628221842) do
     t.string   "facebook"
     t.string   "lynkedin"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "goal_sales", force: true do |t|
+    t.integer  "usuario_id"
+    t.integer  "meta"
+    t.boolean  "alcanzado"
+    t.datetime "fechainicio"
+    t.datetime "fechafin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

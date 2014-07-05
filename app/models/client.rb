@@ -1,6 +1,7 @@
 class Client < ActiveRecord::Base
 	has_many :sales
-	has_many :ordes	
+	has_many :orders
+	has_many :promotions
 
 	validates :email, :presence => {:message => "Ingrese un email"}
 	validates :nombre, :presence => {:message => "Ingrese un nombre" }

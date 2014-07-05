@@ -1,25 +1,19 @@
 class ClientsController < ApplicationController
-  load_and_authorize_resource
+#  load_and_authorize_resource
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   # GET /clients
   # GET /clients.json
   def index
-    #@clients = Client.all
-    #@clients = Client.order("nombre DESC").paginate(:per_page => 5, :page => params[:page])
+    @clients = Client.order("nombre ASC").paginate(:per_page => 5, :page => params[:page])
     if params[:search] 
-    #where(['project_name LIKE ? OR client LIKE ?', "%#{search_term}%", "%#{search_term}%"])
-    #@clients = Client.where(['nombre LIKE ? || apellidos LIKE ? ', "%#{params[:search]}%", "%#{params[:search]}%"]).page(params[:page]).page(params[:page]).per_page(10) 
-    #@clients = Client.where("nombre, apellidos LIKE '%"+params[:search]+"%'")    
-    #@clients = Client.where(:all, :conditions => ["nombre LIKE ? || apellidos LIKE ? '%"+params[:search]+"%'", "%"+params[:search]+"%"]).page(params[:page]).page(params[:page]).per_page(10) 
-    @clients = Client.where("nombre || apellidos LIKE '%"+params[:search]+"%'").page(params[:page]).per_page(5) 
-    #@clients.paginate :per_page => 5, :page => page, :order => 'created_at DESC'
-    if @clients.size.zero? 
-      flash[:notice] = "No se encontro ningun resultado" 
-      @clients = Client.all.order("nombre ASC").paginate(:per_page => 5, :page => params[:page])    
-    end 
-    else 
-      @clients = Client.all.order("nombre ASC").paginate(:per_page => 5, :page => params[:page])    
+      criterios = params[:search].split(" ")
+      puts "cantidad criterios: " + criterios.size.to_s
+     
+      if @clients.size.zero? 
+        flash[:notice] = "No se encontro ningun resultado" 
+        @clients = Client.all.order("nombre ASC").paginate(:per_page => 5, :page => params[:page])    
+      end
     end 
   end
   

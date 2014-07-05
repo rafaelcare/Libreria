@@ -10,20 +10,20 @@
       <th><%= model_class.human_attribute_name(:fecha) %></th>
       <th><%= model_class.human_attribute_name(:cliente) %></th>
       <th><%= model_class.human_attribute_name(:importetotal) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%=t '.Acciones', :default => t("helpers.Acciones") %></th>
     </tr>
   </thead>
   <tbody>
     <% @sales.each do |sale| %>
       <tr>
         <td><%= link_to sale.id, sale_path(sale) %></td>
-        <td><%= sale.usuario_id %></td>          
+        <td><%#= sale.user.nombre %></td>          
         <td><%= sale.fecha.strftime("%d %b %y %H:%M:%S") %></td>
         <td><%= sale.client.nombre %></td>
-        <td><%= sale.importetotal %></td>
+        <td><%= number_to_currency(sale.importetotal) %></td>
         <td>
-          <%= link_to t('.Editar', :default => t("helpers.links.Editar")),
-            edit_sale_path(sale), :class => 'btn btn-mini' %>
+          <%= link_to t('.Detalles', :default => t("helpers.links.Detalles")),
+            sale_path(sale), :class => 'btn btn-mini' %>
         <% if can? :destroy, sale %>
           <%= link_to t('.Eliminar', :default => t("helpers.links.Eliminar")), sale_path(sale),
           :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-mini btn-danger' %>
@@ -33,6 +33,7 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.Nueva Venta', :default => t("helpers.links.Nueva Venta")), new_sale_path,
- :class => 'btn btn-primary' %>
+<% if can? :create, Sale %>
+  <%= link_to t('.Nueva Venta', :default => t("helpers.links.Nueva Venta")), new_sale_path,
+   :class => 'btn btn-primary' %>
+<% end %>

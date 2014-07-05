@@ -1,0 +1,29 @@
+<%- model_class = GoalSale -%>
+<div class="page-header">
+  <h1><%=t '.Meta de usuario', @goal_sale.user.username %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:usuario_id) %>:</strong></dt>
+  <dd><%= @goal_sale.usuario_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:meta) %>:</strong></dt>
+  <dd><%= @goal_sale.meta %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:alcanzado) %>:</strong></dt>
+  <dd><%= @goal_sale.alcanzado %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fechainicio) %>:</strong></dt>
+  <dd><%= @goal_sale.fechainicio %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fechafin) %>:</strong></dt>
+  <dd><%= @goal_sale.fechafin %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              goal_sales_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_goal_sale_path(@goal_sale), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              goal_sale_path(@goal_sale),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

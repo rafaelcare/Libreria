@@ -1,0 +1,41 @@
+<h1>Lista de Usuarios</h1>
+
+<%#=<div class="span9">%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Registrado</th>
+      <th>Rol</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to user.username, accounts_path %></td>
+      <td><%= user.nombre %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at.to_date %></td>
+      <td><%= user.role %></td>
+      <td><%= user.telefono %></td>
+      <td><%= user.direccion %></td>
+      <td>
+        <%#=<a data-toggle="modal" href="#role-options-<%= user.id >" class="btn btn-mini" type="button">Change role</a>%>
+        <%= link_to 'Editar cuenta', edit_user_registration_path, :class=>"btn btn-mini btn-success" %>
+        <%#= link_to t('.Editar', :default => t("helpers.links.Editar")),
+                      edit_account_path(user), :class => 'btn btn-mini' %>
+        
+      </td>
+      <td><%#= link_to("Eliminar usuario", account_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') unless user == current_user %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+

@@ -18,7 +18,11 @@ class SalesController < ApplicationController
     @sale = Sale.new
     #Asociar el cliente
     @sale.client = Client.new      
-    @sale.usuario_id = current_user
+    if user_signed_in? 
+      @sale.user = User.find(current_user.id)
+    end    
+    #puts "Datos del usuario" + @sale.user.nombre + @sale.user.username + @sale.user.telefono
+
     #@sale.saleDetails << SaleDetail.new(:importetotal => 100, :product_id => 4, :cantidad => 1, :preciounitario => 100, :descuento => 10)
   end
 
@@ -32,29 +36,24 @@ class SalesController < ApplicationController
     #strong parameters >> http://edgeapi.rubyonrails.org/classes/ActionController/StrongParameters.html
     #se habilito strong parameters en el modelo
     @sale = Sale.new(sale_params)
-    client = Client.new(client_params)   
+    #client = Client.new(client_params)   
     @sale.fecha = Time.new
     if user_signed_in? 
       @sale.usuario_id = current_user.id 
     end
     #al recibir los datos, comprobar si existe el cliente, entonces se pueden actualizar sus datos
     # si no existe el cliente, registrar un nuevo    
-    if @sale.client_id.nil?
-      @sale.client = client
-    else      
-      @sale.client.nombre = client.nombre ##si el cliente ya existe, se actualiza al nuevo valor recibido
-      @sale.client.direccion = client.direccion
-    end
+    #if @sale.client_id.nil?
+    #   @sale.client = client
+    #else      
+    #   @sale.client.nombre = client.nombre ##si el cliente ya existe, se actualiza al nuevo valor recibido
+    #   @sale.client.direccion = client.direccion
+    #end
 
-    puts "Datos recibidos de la nueva venta" 
-    puts "Cliente>> " + @sale.client_id.to_s + @sale.client.nombre + @sale.client.rfc
-    puts "Productos recibidos: "     
-    
     @sale.saleDetails.each do |item|    
       puts "id: " + item.product_id.to_s + ", p. u: " + item.preciounitario.to_s + ", cantidad: " + item.cantidad.to_s +
         ", importeTotalVenta: " + item.importetotal.to_s 
     end     
-
     #@sale.products.each do |p|
       #puts "IDdelPRODUCTO: " + p.product_id.to_s + ", precio. u: " + p.preciounitario.to_s + ", cantidad: " + p.cantidad.to_s +
         #{}", importeTotalVenta: " + p.importetotal.to_s 

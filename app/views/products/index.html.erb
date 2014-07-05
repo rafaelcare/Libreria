@@ -26,7 +26,7 @@
       <th><%= model_class.human_attribute_name(:nombre) %></th>
       <th><%= model_class.human_attribute_name(:cantidad) %></th>
       <th><%= model_class.human_attribute_name(:precio) %></th>
-      <th><%= model_class.human_attribute_name(:category_id) %></th>
+      <th><%= model_class.human_attribute_name(:categoria) %></th>
       <th><%=t '.acciones', :default => t("helpers.acciones") %></th>
     </tr>
   </thead>
@@ -37,8 +37,8 @@
         <td><%= product.isbn %></td>
         <td><%= product.nombre %></td>
         <td><%= product.cantidad %></td>
-        <td><%= product.precio %></td>
-        <td><%= product.category_id %></td>
+        <td><%= number_to_currency(product.precio) %></td>
+        <td><%= product.category.nombre %></td>
         <td>
           <%= link_to t('.Editar', :default => t("helpers.links.Editar")),
                       edit_product_path(product), :class => 'btn btn-mini' %>
@@ -53,6 +53,11 @@
   </tbody>
 </table>
 
+<p>
+  Descargar inventario:
+  <%#= link_to "CSV", products_path(format: "csv") %> 
+  <%= link_to "Excel", products_path(format: "xls") %>
+</p>
 <%= link_to t('.Agregar Producto', :default => t("helpers.links.Agregar Producto")),
             new_product_path,
             :class => 'btn btn-primary' %>

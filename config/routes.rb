@@ -1,4 +1,9 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
+  resources :goal_sales
+
+  get 'accounts/index'  
+  resources :accounts
+
   devise_for :users
   resources :categories
   resources :order_details

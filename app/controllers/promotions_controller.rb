@@ -16,6 +16,7 @@ class PromotionsController < ApplicationController
   # GET /promotions/new
   def new
     @promotion = Promotion.new
+    @promotion.client = Client.new    
   end
 
   # GET /promotions/1/edit

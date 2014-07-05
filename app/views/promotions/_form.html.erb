@@ -1,16 +1,39 @@
 <%= form_for @promotion, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <div id="datosClient">  
+    <fieldset>
+    <legend>Datos del cliente</legend>   
+      <%= f.hidden_field :client_id, :readonly => "readonly" %>
+      <%= fields_for @promotion.client do |p| %>
+        <%= p.hidden_field :id %>      
+        <%= p.text_field :rfc, :id =>"clavecliente", :placeholder => "RFC del cliente" %>
+        <div id="cliente">
+          <%= p.text_field :nombre, :id =>"nombrecliente", :placeholder => "Nombre del cliente", :onkeypress=>"validaLetras()" %>
+          <%= p.text_field :apellidos,:id =>"apellidoscliente", :placeholder => "Apellidos del cliente", :onkeypress=>"validaLetras()" %>
+          <%= p.text_field :direccion, :id =>"direccioncliente", :placeholder => "Domicilio" %>
+          <%= p.text_field :email, :id =>"emailcliente", :placeholder => "Email del cliente" %>
+          <%= p.text_field :telefono, :id =>"telefonocliente",  :placeholder => "Teléfono del cliente" %>
+          <%= p.text_field :facebook, :id =>"facebookcliente", :placeholder => "Facebook del cliente" %>
+          <%= p.text_field :lynkedin, :id =>"lynkedincliente", :placeholder => "Lynkedin del cliente" %>
+        </div>
+      <% end %>
+    </fieldset>
+  </div>
+<hr>
   <div class="control-group">
-    <%= f.label :usuario_id, :class => 'control-label' %>
+    <%#= f.label :usuario_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :usuario_id, :class => 'text_field' %>
+      <%= f.hidden_field :usuario_id, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :client_id, :class => 'control-label' %>
+    <%#= f.label :client_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :client_id, :class => 'text_field' %>
+      <%= f.hidden_field :client_id, :class => 'text_field' %>
     </div>
   </div>
+
+
   <div class="control-group">
     <%= f.label :descripcion, :class => 'control-label' %>
     <div class="controls">
@@ -31,8 +54,11 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    <%#= f.submit 'Aceptar', :class => 'btn btn-primary' %>
+    <button name="guardarPromocion" id="guardarPromocion" type="button" class="btn btn-primary">Registrar Promoción
+    </button>
+    <%= link_to t('.Cancelar', :default => t("helpers.links.Cancelar")),
                 promotions_path, :class => 'btn' %>
   </div>
+
 <% end %>

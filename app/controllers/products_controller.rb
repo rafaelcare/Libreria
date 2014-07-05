@@ -16,15 +16,26 @@ class ProductsController < ApplicationController
 
   def index 
     if params[:search] 
-      @products = Product.where("nombre LIKE '%"+params[:search]+"%'")      
-    if @products.size.zero? 
-      flash[:notice] = "No se encontro ningun libro" 
-      @products = Product.all
-      @categories = Category.all       
-    end 
-    else 
-      @products = Product.all      
-    end 
+      valores = params[:search] 
+      puts "Valores: " +  valores
+      if valores.nil?
+        @products = Product.all
+        flash[:notice] = "No se encontro ningun libro"
+      elsif valores.size >= 1
+        @products = Product.where("nombre LIKE '%"+valores+"%'")            
+      elsif @products.size.zero?
+        flash[:notice] = "No se encontro ningun libro"
+        @products = Product.all
+        @categories = Category.all
+      else
+        @products = Product.all
+        flash[:notice] = "No se encontro ningun libro"
+      end
+    end
+    respond_to do |format|
+      format.html      
+      format.xls# { send_data @products.to_csv(col_sep: "\t") }
+    end
   end
 
   # GET /products/1
