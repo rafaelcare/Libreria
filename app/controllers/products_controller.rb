@@ -21,21 +21,7 @@ class ProductsController < ApplicationController
       if valores.nil?
         @products = Product.all
         flash[:notice] = "No se encontro ningun libro"
-      elsif valores.size >= 1
-        @products = Product.where("nombre LIKE '%"+valores+"%'")            
-      elsif @products.size.zero?
-        flash[:notice] = "No se encontro ningun libro"
-        @products = Product.all
-        @categories = Category.all
-      else
-        @products = Product.all
-        flash[:notice] = "No se encontro ningun libro"
-      end
-    end
-    respond_to do |format|
-      format.html      
-      format.xls# { send_data @products.to_csv(col_sep: "\t") }
-    end
+   end
   end
 
   # GET /products/1
