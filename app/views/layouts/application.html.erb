@@ -23,9 +23,9 @@
 					  <%= link_to 'Editar cuenta', edit_user_registration_path,  :class=>"btn btn-link" %> |
 					  <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete,  :class=>"btn btn-link"  %>
 					<% else %>
-					<%# if can? :read, users_path %>
+					
 					  <%= link_to "Crear cuenta", new_user_registration_path, :class => 'navbar-link'  %> 
-					  <%# end %> |
+					  |
 					  <%= link_to "Iniciar sesión", new_user_session_path, :class => 'navbar-link'  %>
 					<% end %>							
 			    </div>			       		    
@@ -39,14 +39,14 @@
 				  <li><%= link_to 'Pedidos', orders_path %></li>
 				  <li><%= link_to 'Ventas', sales_path %></li>
 				  <li><%= link_to 'Proveedores', providers_path %></li>
-				  <% if can? :read, accounts_path %>
+				  
 				  <li><%= link_to 'Usuarios', accounts_path %></li>
-				  <% end %>
+				  
 			  	  <li><%= link_to 'Categorias', categories_path %></li>
 				  <li><%= link_to 'Reportes' %></li>
-				  <% if can? :read, goal_sales_path %>
+				  
 				  <li><%= link_to 'Metas', goal_sales_path %></li>
-				  <% end %>
+				  
 		        </ul>		        	
 		        	<%#<input type="text" class="form-control" placeholder="Buscar">				      
 				    <button type="submit" class="btn btn-default">Enviar</button>%>
